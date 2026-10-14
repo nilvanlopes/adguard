@@ -1,0 +1,28 @@
+services:
+  adguardhome:
+    image: adguard/adguardhome:v0.107.79@sha256:aba9e3bf0613be3ba3755e1fc311b126e2c24bec25e18b6483894a88283074f0
+    command: ["--no-check-update", "-c", "/opt/adguardhome/conf/AdGuardHome.yaml", "-w", "/opt/adguardhome/work"]
+    volumes:
+      - ./data/conf:/opt/adguardhome/conf
+      - ./data/work:/opt/adguardhome/work
+    networks:
+      traefik-local:
+        aliases:
+          - adguardhome
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == pyuserver
+      update_config:
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 0
+    stop_grace_period: 30s
+
+networks:
+  traefik-local:
+    external: true
+    name: traefik-local
