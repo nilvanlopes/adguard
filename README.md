@@ -27,7 +27,8 @@ assistente em `http://adguard.localnetwork`, configure a interface web na porta
 
 - Upstreams: `170.239.224.25` e `170.239.224.30`, em paralelo, timeout 3 segundos.
 - Sem servidores fallback adicionais nem listas de bloqueio ativas.
-- DNS rewrites de `adguard.localnetwork`, `waha.localnetwork` e
+- DNS rewrites de `adguard.localnetwork`, `waha.localnetwork`,
+  `stremio.localnetwork` e
   `fred.localnetwork` para `192.168.10.91`.
 - DHCP desativado. Os clientes DNS permitidos são a rede overlay `10.0.2.0/24`,
   pois o Traefik encaminha as consultas e aparece como cliente nos logs.
